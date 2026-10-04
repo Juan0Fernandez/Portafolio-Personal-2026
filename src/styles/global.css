@@ -1,0 +1,43 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+
+/* ESTA LÍNEA MÁGICA HABILITA EL MODO OSCURO EN TAILWIND V4 */
+@custom-variant dark (&:is(.dark, .dark *));
+
+@theme {
+  --color-ciber-green: #00ff41;
+  --color-ciber-purple: #bc13fe;
+  --color-dark-bg: #0a0a0a;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* FONDOS Y CUADRÍCULA: MODO OSCURO (Default) */
+.dark body {
+  background-color: var(--color-dark-bg);
+  color: white;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* FONDOS Y CUADRÍCULA: MODO CLARO */
+html:not(.dark) body {
+  background-color: #f3f4f6; /* Fondo gris muy clarito */
+  color: #111827; /* Texto oscuro */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}

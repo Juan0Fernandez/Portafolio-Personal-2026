@@ -1,0 +1,241 @@
+---
+// src/pages/cv.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Juan Fernandez | Curriculum Vitae">
+  <div class="fixed top-6 right-6 z-50 flex items-center gap-3">
+    <button id="theme-toggle-cv" class="bg-white/80 dark:bg-black/50 border border-gray-300 dark:border-white/20 text-gray-900 dark:text-white p-2.5 rounded-full hover:text-ciber-purple dark:hover:text-ciber-green transition-colors backdrop-blur-md shadow-lg">
+      <svg id="theme-icon-dark-cv" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+      <svg id="theme-icon-light-cv" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+    </button>
+    <button id="lang-toggle-cv" class="bg-white/80 dark:bg-black/50 border border-gray-300 dark:border-white/20 text-gray-900 dark:text-white font-bold px-4 py-2 rounded-full hover:text-ciber-green transition-colors backdrop-blur-md shadow-lg">
+      EN
+    </button>
+  </div>
+
+  <main class="min-h-screen py-24 px-6 md:px-12 relative z-10 bg-gray-50 dark:bg-transparent text-gray-900 dark:text-gray-200 transition-colors duration-300">
+    <div class="container mx-auto max-w-4xl bg-white/90 dark:bg-black/40 backdrop-blur-xl border border-gray-200 dark:border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+      
+      <div class="absolute top-0 right-0 w-64 h-64 bg-ciber-purple/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-ciber-green/10 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
+
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-8 mb-12 border-b border-gray-300 dark:border-white/10 pb-8 relative z-10">
+        
+        <div class="w-40 h-40 shrink-0 rounded-full overflow-hidden border-4 border-gray-200 dark:border-gray-700 shadow-xl relative group">
+          <img id="cv-profile-img" src="/img/Leon.png" alt="Juan Fernandez" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://ui-avatars.com/api/?name=Juan+Fernandez&background=0D8ABC&color=fff&size=200'">
+        </div>
+
+        <div class="flex-grow text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-gray-900 dark:text-white mb-2">JUAN <span class="text-ciber-purple">FERNANDEZ</span></h1>
+            <p class="text-lg md:text-xl font-mono text-gray-600 dark:text-gray-400 mb-4" data-es="Desarrollador de Software & Redes" data-en="Software & Network Developer">Desarrollador de Software & Redes</p>
+            
+            <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                <span class="flex items-center gap-1">📍 Cuenca, Ecuador</span>
+                <span class="flex items-center gap-1">📧 fernandezj159@hotmail.com</span>
+                <span class="flex items-center gap-1">📱 +593 99 999 9999</span>
+                <span class="flex items-center gap-1">🎂 24 <span data-es="años" data-en="years old">años</span></span>
+            </div>
+
+            <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
+                <a href="/" class="border border-gray-400 dark:border-gray-600 px-5 py-2 rounded-full text-sm font-bold hover:border-ciber-purple hover:text-ciber-purple transition-colors" data-es="← Volver al Portafolio" data-en="← Back to Portfolio">← Volver al Portafolio</a>  
+              </div>
+        </div>
+      </div>
+
+      <div class="mb-10 relative z-10">
+        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white border-l-4 border-ciber-green pl-3" data-es="Perfil Profesional" data-en="Professional Profile">Perfil Profesional</h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-es="Estudiante de Computación apasionado por la tecnología, el desarrollo de software y la administración de redes. Graduado del Colegio Militar, con gran disciplina y capacidad de trabajo en equipo. Busco aplicar mis conocimientos en entornos reales, aportando soluciones eficientes en el área de TI." data-en="Computer Science student passionate about technology, software development, and network administration. Military High School graduate with strong discipline and teamwork skills. Looking to apply my knowledge in real-world environments, providing efficient solutions in the IT area.">
+            Estudiante de Computación apasionado por la tecnología, el desarrollo de software y la administración de redes. Graduado del Colegio Militar, con gran disciplina y capacidad de trabajo en equipo. Busco aplicar mis conocimientos en entornos reales, aportando soluciones eficientes en el área de TI.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 relative z-10">
+        
+        <div>
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white border-l-4 border-ciber-purple pl-3" data-es="Educación" data-en="Education">Educación</h2>
+            
+            <div class="mb-6 relative pl-6 border-l-2 border-gray-300 dark:border-gray-700">
+                <div class="absolute w-3 h-3 bg-ciber-purple rounded-full -left-[7px] top-1.5 shadow-[0_0_10px_rgba(188,19,254,0.8)]"></div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white" data-es="Ingeniería en Computación" data-en="B.S. in Computer Science">Ingeniería en Computación</h3>
+                <p class="text-ciber-purple font-mono text-sm mb-1">Universidad Politécnica Salesiana</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400" data-es="Actualmente cursando" data-en="Currently enrolled">Actualmente cursando</p>
+            </div>
+
+            <div class="relative pl-6 border-l-2 border-gray-300 dark:border-gray-700">
+                <div class="absolute w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-full -left-[7px] top-1.5"></div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white" data-es="Bachiller en Ciencias Generales" data-en="General Sciences High School Diploma">Bachiller en Ciencias Generales</h3>
+                <p class="text-gray-600 dark:text-gray-400 font-mono text-sm mb-1">Colegio Militar</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400" data-es="Libreta Militar obtenida" data-en="Military pass obtained">Libreta Militar obtenida</p>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white border-l-4 border-ciber-green pl-3" data-es="Certificaciones" data-en="Certifications">Certificaciones</h2>
+            <div id="cv-certs-list" class="space-y-4">
+                <p class="text-sm text-gray-500 italic">Cargando certificaciones...</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
+        
+        <div>
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white border-l-4 border-ciber-purple pl-3" data-es="Experiencia Práctica" data-en="Practical Experience">Experiencia Práctica</h2>
+            <div id="cv-exp-list">
+                <p class="text-sm text-gray-500 italic">Cargando experiencia...</p>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white border-l-4 border-ciber-green pl-3" data-es="Habilidades Clave" data-en="Key Skills">Habilidades Clave</h2>
+            <div id="cv-habs-list" class="flex flex-wrap gap-2">
+                <p class="text-sm text-gray-500 italic">Cargando habilidades...</p>
+            </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { supabase } from '../lib/supabase.js';
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    
+    const lang = document.documentElement.lang;
+
+    // 1. CARGAR FOTO DE PERFIL
+    const profileImg = document.getElementById('cv-profile-img') as HTMLImageElement;
+    if (profileImg) {
+        const { data } = await supabase.from('cv_perfil').select('imagen_url').eq('id', 1).single();
+        if (data && data.imagen_url) profileImg.src = data.imagen_url;
+    }
+
+    // 2. CARGAR HABILIDADES
+    const habsList = document.getElementById('cv-habs-list');
+    if (habsList) {
+        const { data } = await supabase.from('habilidades').select('*').eq('es_visible', true).order('id', { ascending: false });
+        if (data && data.length > 0) {
+            habsList.innerHTML = '';
+            data.forEach(hab => {
+                let bgClass = hab.clase_color === 'ciber-green' ? 'bg-ciber-green/20 text-ciber-green border-ciber-green/50' :
+                              hab.clase_color === 'ciber-purple' ? 'bg-ciber-purple/20 text-ciber-purple border-ciber-purple/50' :
+                              'bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700';
+                
+                const span = document.createElement('span');
+                span.className = `${bgClass} px-3 py-1 rounded-full text-sm font-bold border`;
+                span.innerText = hab.nombre;
+                habsList.appendChild(span);
+            });
+        } else {
+            habsList.innerHTML = '<p class="text-sm text-gray-500 italic">No hay habilidades registradas.</p>';
+        }
+    }
+
+    // 3. CARGAR EXPERIENCIA
+    const expList = document.getElementById('cv-exp-list');
+    if (expList) {
+        const { data } = await supabase.from('experiencia').select('*').eq('es_visible', true).order('fecha_creacion', { ascending: false });
+        if (data && data.length > 0) {
+            expList.innerHTML = '';
+            data.forEach((exp, index) => {
+                const div = document.createElement('div');
+                div.className = 'mb-6 relative pl-6 border-l-2 border-gray-300 dark:border-gray-700';
+                
+                const dotClass = index === 0 ? 'bg-ciber-purple shadow-[0_0_10px_rgba(188,19,254,0.8)]' : 'bg-gray-400 dark:bg-gray-600';
+                const textClass = index === 0 ? 'text-ciber-purple' : 'text-gray-500';
+                const cargo = lang === 'es' ? exp.cargo_es : exp.cargo_en;
+                const desc = lang === 'es' ? exp.descripcion_es : exp.descripcion_en;
+
+                div.innerHTML = `
+                    <div class="absolute w-3 h-3 rounded-full -left-[7px] top-1.5 ${dotClass}"></div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white" data-es="${exp.cargo_es}" data-en="${exp.cargo_en}">${cargo}</h3>
+                    <p class="${textClass} font-mono text-sm mb-1">${exp.empresa}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300" data-es="${exp.descripcion_es}" data-en="${exp.descripcion_en}">${desc}</p>
+                `;
+                expList.appendChild(div);
+            });
+        } else {
+            expList.innerHTML = '<p class="text-sm text-gray-500 italic">No hay experiencia registrada aún.</p>';
+        }
+    }
+
+    // 4. CARGAR CERTIFICADOS
+    const certsList = document.getElementById('cv-certs-list');
+    if (certsList) {
+        const { data } = await supabase.from('certificados').select('*').eq('es_visible', true).order('fecha_creacion', { ascending: false });
+        if (data && data.length > 0) {
+            certsList.innerHTML = '';
+            
+            // Agrupar por entidad
+            const grouped = data.reduce((acc, cert) => {
+                if (!acc[cert.entidad]) acc[cert.entidad] = [];
+                acc[cert.entidad].push(cert);
+                return acc;
+            }, {});
+
+            Object.entries(grouped).forEach(([entidad, certsArray]) => {
+                const divContainer = document.createElement('div');
+                divContainer.className = 'bg-gray-100/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-4 rounded-xl mb-4';
+                
+                let linksHTML = '';
+                (certsArray as any[]).forEach(cert => {
+                    const titulo = lang === 'es' ? cert.titulo_es : cert.titulo_en;
+                    const verTexto = lang === 'es' ? 'Ver PDF' : 'View PDF';
+                    linksHTML += `
+                        <a href="${cert.url_archivo}" target="_blank" class="flex justify-between items-center group bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 p-2.5 rounded-lg hover:border-ciber-green transition-colors mt-2">
+                            <span class="text-sm font-semibold text-gray-800 dark:text-gray-200 group-hover:text-ciber-green transition-colors truncate pr-2" data-es="${cert.titulo_es}" data-en="${cert.titulo_en}">${titulo}</span>
+                            <span class="text-xs border border-gray-300 dark:border-gray-600 px-2 py-1 rounded text-gray-500 group-hover:border-ciber-green group-hover:text-ciber-green whitespace-nowrap" data-es="Ver PDF" data-en="View PDF">${verTexto}</span>
+                        </a>
+                    `;
+                });
+
+                divContainer.innerHTML = `
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-3xl">🏅</span>
+                        <div>
+                            <p class="font-bold text-gray-900 dark:text-white text-md">${entidad}</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-2">${linksHTML}</div>
+                `;
+                certsList.appendChild(divContainer);
+            });
+        } else {
+            certsList.innerHTML = '<p class="text-sm text-gray-500 italic">No hay certificaciones disponibles.</p>';
+        }
+    }
+
+    // --- LÓGICA DE IDIOMA Y TEMA ORIGINALES ---
+    const langBtn = document.getElementById('lang-toggle-cv');
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        let currentLang = document.documentElement.lang === 'es' ? 'en' : 'es';
+        document.documentElement.lang = currentLang;
+        langBtn.innerText = currentLang === 'es' ? 'EN' : 'ES';
+        document.querySelectorAll('[data-es][data-en]').forEach(el => {
+          el.innerHTML = el.getAttribute(`data-${currentLang}`) || '';
+        });
+      });
+    }
+
+    const themeBtn = document.getElementById('theme-toggle-cv');
+    const updateIcon = () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        document.getElementById('theme-icon-light-cv')?.classList.toggle('hidden', !isDark);
+        document.getElementById('theme-icon-dark-cv')?.classList.toggle('hidden', isDark);
+    };
+    updateIcon();
+    
+    if(themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            updateIcon();
+        });
+    }
+  });
+</script>

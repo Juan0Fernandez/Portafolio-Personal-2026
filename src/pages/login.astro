@@ -1,0 +1,190 @@
+---
+// src/pages/login.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Acceso | Login">
+  <div class="absolute top-6 right-6 z-50 flex items-center gap-3">
+    <button id="theme-toggle-auth" class="bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white p-2.5 rounded-full hover:text-ciber-purple dark:hover:text-ciber-green transition-colors shadow-lg group">
+      <svg id="theme-icon-dark-auth" class="w-5 h-5 hidden group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+      <svg id="theme-icon-light-auth" class="w-5 h-5 hidden group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+    </button>
+    <button id="lang-toggle-auth" class="bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white font-bold px-4 py-2 rounded-full hover:text-ciber-green transition-colors shadow-lg">
+      EN
+    </button>
+  </div>
+
+  <main class="min-h-screen flex items-center justify-center p-6 relative z-10 bg-transparent">
+    
+    <div class="relative w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-[2px] bg-transparent">
+      
+      <div id="login-border-anim" class="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] animate-[spin_4s_linear_infinite] z-0" 
+            style="background: conic-gradient(transparent 60%, #00ff41 80%, #bc13fe 100%);">
+      </div>
+
+      <div class="relative z-10 w-full h-full bg-white dark:bg-[#0a0a0a] rounded-[calc(1.5rem-2px)] p-8 sm:p-10 flex flex-col justify-center">
+        
+        <div class="text-center mb-8">
+          <h1 id="login-title" class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tighter uppercase" data-es="Acceso <span class='text-ciber-green'>Comunidad</span>" data-en="Community <span class='text-ciber-green'>Access</span>">
+            Acceso <span class="text-ciber-green">Comunidad</span>
+          </h1>
+          <p id="login-subtitle" class="text-sm text-gray-600 dark:text-gray-400 mt-2 font-medium" data-es="Inicia sesión para usar el chat." data-en="Sign in to use the live chat.">
+            Inicia sesión para usar el chat.
+          </p>
+        </div>
+
+        <form id="login-form" class="space-y-6">
+          <div>
+            <label for="admin-email" class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-2" data-es="Correo Electrónico" data-en="Email Address">Correo Electrónico</label>
+            <input type="email" id="admin-email" required class="w-full bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm border-b-2 border-gray-300 dark:border-gray-700 focus:border-ciber-green text-gray-900 dark:text-white py-3 px-4 rounded-t-xl focus:outline-none transition-colors" placeholder="tu@correo.com">
+          </div>
+          
+          <div>
+            <label for="admin-password" class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-2" data-es="Contraseña" data-en="Password">Contraseña</label>
+            <div class="relative">
+              <input type="password" id="admin-password" required class="w-full bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm border-b-2 border-gray-300 dark:border-gray-700 focus:border-ciber-purple text-gray-900 dark:text-white py-3 px-4 pr-12 rounded-t-xl focus:outline-none transition-colors" placeholder="••••••••">
+              <button type="button" id="toggle-pass" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-ciber-purple transition-colors">
+                <svg id="eye-show" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg id="eye-hide" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" id="login-submit" class="w-full mt-8 bg-gray-900 dark:bg-white text-white dark:text-black font-bold uppercase tracking-widest py-3.5 rounded-xl hover:bg-ciber-green dark:hover:bg-ciber-green transition-all duration-300 shadow-lg" data-es="Iniciar Sesión" data-en="Sign In">
+            Iniciar Sesión
+          </button>
+        </form>
+
+        <div id="login-error" class="hidden mt-4 text-center text-sm font-bold text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30 p-3 rounded-lg border border-red-200 dark:border-red-800"></div>
+        
+        <div class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p data-es="¿Aún no tienes cuenta?" data-en="Don't have an account yet?">¿Aún no tienes cuenta?</p>
+          <a href="/register" class="font-bold text-ciber-green hover:text-ciber-purple transition-colors drop-shadow-md" data-es="Regístrate aquí" data-en="Register here">
+            Regístrate aquí
+          </a>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a href="/" class="text-xs font-bold tracking-widest text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors uppercase">← Volver al inicio</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { supabase } from '../lib/supabase.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // UI SECRETA: Cambia a "Protocolo Admin" si la URL tiene ?secret=admin
+    const urlParams = new URLSearchParams(window.location.search);
+    const isSecretAdmin = urlParams.get('secret') === 'admin';
+    const lang = document.documentElement.lang;
+    
+    if (isSecretAdmin) {
+        const titleEl = document.getElementById('login-title');
+        const subEl = document.getElementById('login-subtitle');
+        if (titleEl) titleEl.innerHTML = lang === 'es' ? 'Protocolo <span class="text-ciber-purple">Admin</span>' : 'Admin <span class="text-ciber-purple">Protocol</span>';
+        if (subEl) subEl.innerText = lang === 'es' ? 'Identificación requerida para acceso al sistema.' : 'Identification required for system access.';
+    }
+
+    const form = document.getElementById('login-form');
+    const emailInput = document.getElementById('admin-email') as HTMLInputElement;
+    const passInput = document.getElementById('admin-password') as HTMLInputElement;
+    const submitBtn = document.getElementById('login-submit') as HTMLButtonElement;
+    const errorDiv = document.getElementById('login-error');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Autenticando...';
+      if(errorDiv) errorDiv.classList.add('hidden');
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: emailInput.value,
+        password: passInput.value,
+      });
+
+      if (error) {
+        if(errorDiv) {
+            errorDiv.classList.remove('hidden');
+            errorDiv.innerText = lang === 'es' ? 'Acceso denegado. Revisa tus credenciales o si confirmaste tu correo.' : 'Access denied. Check your credentials or if you confirmed your email.';
+        }
+        submitBtn.disabled = false;
+        submitBtn.innerText = lang === 'es' ? 'Iniciar Sesión' : 'Sign In';
+      } else {
+        if(data.user) {
+            await supabase.from('perfiles')
+              .update({ ultimo_acceso: new Date().toISOString() })
+              .eq('id', data.user.id);
+        }
+
+        const adminEmail = import.meta.env.PUBLIC_ADMIN_EMAIL ;
+        
+        if (data.user?.email === adminEmail) {
+          window.location.href = '/dashboard';
+        } else {
+          window.location.href = '/';
+        }
+      }
+    });
+
+    const togglePassBtn = document.getElementById('toggle-pass');
+    const eyeShow = document.getElementById('eye-show');
+    const eyeHide = document.getElementById('eye-hide');
+
+    togglePassBtn?.addEventListener('click', () => {
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        eyeShow?.classList.add('hidden');
+        eyeHide?.classList.remove('hidden');
+      } else {
+        passInput.type = 'password';
+        eyeShow?.classList.remove('hidden');
+        eyeHide?.classList.add('hidden');
+      }
+    });
+
+    // Código de idioma/tema...
+    const langBtn = document.getElementById('lang-toggle-auth');
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        let currentLang = document.documentElement.lang === 'es' ? 'en' : 'es';
+        document.documentElement.lang = currentLang;
+        langBtn.innerText = currentLang === 'es' ? 'EN' : 'ES';
+        document.querySelectorAll('[data-es][data-en]').forEach(el => {
+          el.innerHTML = el.getAttribute(`data-${currentLang}`) || '';
+        });
+      });
+    }
+
+    const themeBtn = document.getElementById('theme-toggle-auth');
+    const iconDark = document.getElementById('theme-icon-dark-auth');
+    const iconLight = document.getElementById('theme-icon-light-auth');
+    
+    const updateIcon = () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        if (isDark) {
+            iconLight?.classList.remove('hidden');
+            iconDark?.classList.add('hidden');
+        } else {
+            iconDark?.classList.remove('hidden');
+            iconLight?.classList.add('hidden');
+        }
+    };
+    updateIcon();
+    themeBtn?.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        if (isDark) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+        updateIcon();
+        window.dispatchEvent(new Event('theme-changed'));
+    });
+  });
+</script>

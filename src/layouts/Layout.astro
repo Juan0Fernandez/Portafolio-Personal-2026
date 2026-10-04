@@ -1,0 +1,114 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+import Footer from '../components/Footer.astro'; 
+
+export interface Props {
+    title: string;
+    description?: string;
+}
+
+const { 
+  title, 
+  description = "Portafolio de Juan Fernandez - Desarrollador de Software y Redes. Especializado en crear aplicaciones web rápidas, seguras y escalables." 
+} = Astro.props;
+
+const image = "/img/Panda.png";
+const url = "https://juancafer.com";
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="author" content="Juan Fernandez" />
+        <meta name="keywords" content="Juan Fernandez, Desarrollador Web, Astro, Tailwind, Supabase, Redes, Cisco, Gualaceo, Cuenca, Programador" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(image, url)} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL(image, url)} />
+    </head>
+    
+    <!-- 2. Añadimos 'flex flex-col min-h-screen' al body -->
+    <body class="bg-gray-50 dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans flex flex-col min-h-screen">
+        
+        <div id="tsparticles" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></div>
+
+        <!-- 3. Añadimos 'flex-grow' para que el contenido empuje el footer siempre hacia abajo -->
+        <div class="relative z-10 flex-grow">
+            <slot /> 
+        </div>
+        
+        <!-- 4. Inyectamos el Footer aquí -->
+        <div class="relative z-10 w-full mt-auto">
+            <Footer />
+        </div>
+        
+        <script is:inline src="/js/tsparticles.bundle.min.js"></script>
+        
+        <script is:inline>
+            const loadParticles = () => {
+                const isDark = document.documentElement.classList.contains('dark');
+                const particleColor = isDark ? "#bc13fe" : "#4c007a"; 
+                const linkOpacity = isDark ? 0.15 : 0.3;
+
+                tsParticles.load("tsparticles", {
+                    fullScreen: { enable: false },
+                    background: { color: "transparent" },
+                    fpsLimit: 120,
+                    interactivity: {
+                        events: { onHover: { enable: true, mode: "grab" }, resize: true },
+                        modes: { grab: { distance: 200, links: { opacity: 0.8, color: particleColor } } },
+                    },
+                    particles: {
+                        color: { value: particleColor },
+                        links: { color: particleColor, distance: 150, enable: true, opacity: linkOpacity, width: 1 },
+                        move: { enable: true, speed: 0.8 },
+                        number: { value: 70, density: { enable: true, area: 800 } },
+                        opacity: { value: 0.5 },
+                        size: { value: { min: 1, max: 2 } },
+                    },
+                    detectRetina: true,
+                });
+            };
+
+            loadParticles();
+            window.addEventListener('theme-changed', () => {
+                const p = tsParticles.domItem(0);
+                if (p) p.destroy();
+                setTimeout(loadParticles, 50);
+            });
+        </script>
+
+        <script is:inline>
+            const langToggle = document.getElementById('lang-toggle');
+            let currentLang = 'es'; 
+
+            if (langToggle) {
+                langToggle.addEventListener('click', () => {
+                    currentLang = currentLang === 'es' ? 'en' : 'es';
+                    langToggle.innerText = currentLang === 'es' ? 'EN' : 'ES';
+                    document.documentElement.lang = currentLang;
+
+                    document.querySelectorAll('[data-es][data-en]').forEach(el => {
+                        el.innerHTML = el.getAttribute(`data-${currentLang}`);
+                    });
+                });
+            }
+        </script>
+    </body>
+</html>

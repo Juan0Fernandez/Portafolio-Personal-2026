@@ -1,0 +1,292 @@
+---
+// src/components/ChatWidget.astro
+---
+<div id="chat-container" class="fixed bottom-6 right-6 z-[1000] flex flex-col items-end">
+  
+  <div id="chat-window" class="hidden w-80 sm:w-96 bg-white/95 dark:bg-black/90 backdrop-blur-xl border border-gray-300 dark:border-white/20 rounded-2xl shadow-2xl mb-4 overflow-hidden transition-all duration-300 transform origin-bottom-right">
+    
+    <div class="bg-gray-900 dark:bg-ciber-green p-4 text-white dark:text-black font-bold flex justify-between items-center">
+      <span id="chat-header-title" data-es="Contacto" data-en="Contact">Contacto</span>
+      <div class="flex items-center gap-3">
+        <button id="logout-chat-btn" class="hidden text-xs bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded transition-colors" data-es="Salir" data-en="Logout">Salir</button>
+        <button id="close-chat" class="text-gray-300 hover:text-white dark:text-black dark:hover:text-gray-800 font-bold text-xl leading-none transition-colors">&times;</button>
+      </div>
+    </div>
+    
+    <div class="p-5">
+      
+      <div id="unauth-view" class="block">
+        <div class="bg-ciber-purple/10 border border-ciber-purple/30 rounded-lg p-3 mb-4 text-center">
+            <p class="text-xs text-gray-700 dark:text-gray-300 mb-2 font-medium" data-es="¿Quieres chatear en tiempo real?" data-en="Want to chat in real-time?">¿Quieres chatear en tiempo real?</p>
+            <a href="/login" class="text-xs bg-ciber-purple hover:bg-purple-700 text-white font-bold py-1.5 px-4 rounded-full transition-colors" data-es="Iniciar Sesión" data-en="Sign In">Iniciar Sesión</a>
+        </div>
+
+        <form id="contact-form" class="flex flex-col gap-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-1" data-es="Tu Nombre" data-en="Your Name">Tu Nombre</label>
+            <input type="text" id="contact-name" required class="w-full bg-transparent border-b-2 border-gray-400 dark:border-gray-600 focus:border-ciber-purple text-gray-900 dark:text-white py-1.5 px-1 focus:outline-none transition-colors">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-1" data-es="Tu correo" data-en="Your email">Tu correo</label>
+            <input type="email" id="contact-email" required class="w-full bg-transparent border-b-2 border-gray-400 dark:border-gray-600 focus:border-ciber-purple text-gray-900 dark:text-white py-1.5 px-1 focus:outline-none transition-colors">
+          </div>
+          
+          <div>
+            <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-1" data-es="Mensaje" data-en="Message">Mensaje</label>
+            <textarea id="contact-msg" required rows="2" class="w-full bg-transparent border-b-2 border-gray-400 dark:border-gray-600 focus:border-ciber-purple text-gray-900 dark:text-white py-1.5 px-1 focus:outline-none transition-colors resize-none"></textarea>
+          </div>
+          
+          <button type="submit" id="contact-submit" class="w-full mt-2 bg-gray-800 dark:bg-white text-white dark:text-black font-bold uppercase tracking-widest py-2.5 rounded-xl hover:bg-ciber-purple dark:hover:bg-ciber-purple dark:hover:text-white transition-all text-sm shadow-md" data-es="Enviar mensaje" data-en="Send message">
+            Enviar mensaje
+          </button>
+        </form>
+      </div>
+
+      <div id="auth-view" class="hidden flex flex-col h-72">
+        <div id="live-chat-messages" class="flex-grow overflow-y-auto mb-4 space-y-3 pr-2 custom-scrollbar flex flex-col">
+            <p class="text-xs text-center text-gray-500" data-es="Cargando mensajes..." data-en="Loading messages...">Cargando mensajes...</p>
+        </div>
+        
+        <form id="live-chat-form" class="mt-auto flex gap-2">
+            <input type="text" id="live-chat-input" required class="flex-grow bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-ciber-green dark:focus:border-ciber-green text-gray-900 dark:text-white text-sm py-2 px-3 rounded-xl focus:outline-none transition-colors" placeholder="Escribe aquí...">
+            <button type="submit" id="live-chat-submit" class="bg-ciber-green text-black p-2 rounded-xl hover:bg-green-500 transition-colors shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+        </form>
+      </div>
+
+      <div id="chat-status" class="hidden mt-3 text-center text-sm font-bold p-2 rounded-lg"></div>
+    </div>
+  </div>
+
+  <button id="chat-bubble" class="relative w-14 h-14 bg-ciber-purple rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(188,19,254,0.4)] hover:scale-110 hover:shadow-[0_0_25px_rgba(188,19,254,0.6)] transition-all duration-300">
+    <div id="chat-notification" class="hidden absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-white dark:border-black animate-pulse shadow-lg"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </button>
+</div>
+
+<style>
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(188, 19, 254, 0.3); border-radius: 10px; }
+</style>
+
+<script>
+  import { supabase } from '../lib/supabase.js';
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const bubble = document.getElementById('chat-bubble');
+    const windowChat = document.getElementById('chat-window');
+    const closeBtn = document.getElementById('close-chat');
+    const statusDiv = document.getElementById('chat-status');
+    const headerTitle = document.getElementById('chat-header-title');
+    const notificationDot = document.getElementById('chat-notification');
+    
+    const unauthView = document.getElementById('unauth-view');
+    const authView = document.getElementById('auth-view');
+    const logoutBtn = document.getElementById('logout-chat-btn');
+
+    const contactForm = document.getElementById('contact-form');
+    const cName = document.getElementById('contact-name') as HTMLInputElement;
+    const cEmail = document.getElementById('contact-email') as HTMLInputElement;
+    const cMsg = document.getElementById('contact-msg') as HTMLTextAreaElement;
+    const cSubmit = document.getElementById('contact-submit') as HTMLButtonElement;
+
+    const liveChatForm = document.getElementById('live-chat-form');
+    const liveInput = document.getElementById('live-chat-input') as HTMLInputElement;
+    const liveSubmit = document.getElementById('live-chat-submit') as HTMLButtonElement;
+    const messagesContainer = document.getElementById('live-chat-messages');
+
+    let currentUser: any = null;
+    let lastMessageCount = 0;
+    const adminEmail = import.meta.env.PUBLIC_ADMIN_EMAIL ;
+
+    // 1. Verificamos si hay alguien logueado (Pepe)
+    const checkInitialSession = async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+            currentUser = session.user;
+            activateLiveChatMode();
+            
+            // EL RADAR DEL CLIENTE: Escanea la BD cada 1 minuto (60,000 ms)
+            setInterval(checkNewMessages, 60000); 
+        }
+    };
+    checkInitialSession(); 
+
+    // Mostrar/Ocultar el chat y apagar el puntito rojo
+    const toggleChat = () => {
+      windowChat?.classList.toggle('hidden');
+      if (!windowChat?.classList.contains('hidden') && notificationDot) {
+          notificationDot.classList.add('hidden');
+          // Scrollear al fondo al abrir
+          if(messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    };
+
+    bubble?.addEventListener('click', toggleChat);
+    closeBtn?.addEventListener('click', toggleChat);
+
+    const activateLiveChatMode = () => {
+        if(unauthView) unauthView.classList.add('hidden');
+        if(authView) authView.classList.remove('hidden');
+        if(logoutBtn) logoutBtn.classList.remove('hidden');
+        
+        const nickname = currentUser.user_metadata?.nickname || 'Usuario';
+        const lang = document.documentElement.lang;
+        if(headerTitle) {
+            headerTitle.innerHTML = lang === 'es' 
+                ? `Chat: <span class="text-ciber-purple">${nickname}</span>` 
+                : `Chat: <span class="text-ciber-purple">${nickname}</span>`;
+        }
+
+        loadLiveMessages();
+    };
+
+    // EL RADAR DE LA BURBUJA (Busca si el admin respondió)
+    const checkNewMessages = async () => {
+        if (!currentUser) return;
+        
+        const hace48Horas = new Date();
+        hace48Horas.setHours(hace48Horas.getHours() - 48);
+
+        const { data, error } = await supabase
+            .from('chat_en_vivo')
+            .select('user_email') // Solo traemos el correo para saber quién lo mandó
+            .eq('user_id', currentUser.id)
+            .gt('fecha_envio', hace48Horas.toISOString());
+
+        if (!error && data) {
+            // Si hay mensajes nuevos en la base de datos...
+            if (lastMessageCount !== 0 && data.length > lastMessageCount) {
+                
+                // Revisamos si el último mensaje lo mandó el ADMIN
+                const lastMsg = data[data.length - 1];
+                if (lastMsg.user_email === adminEmail) {
+                    // Si el chat está cerrado, encendemos el puntito rojo
+                    if (windowChat?.classList.contains('hidden') && notificationDot) {
+                        notificationDot.classList.remove('hidden');
+                    }
+                }
+                
+                // Recargamos los mensajes en el fondo
+                loadLiveMessages();
+            }
+            lastMessageCount = data.length;
+        }
+    };
+
+    const loadLiveMessages = async () => {
+        if (!currentUser || !messagesContainer) return;
+        
+        const hace48Horas = new Date();
+        hace48Horas.setHours(hace48Horas.getHours() - 48);
+
+        const { data, error } = await supabase
+            .from('chat_en_vivo')
+            .select('*')
+            .eq('user_id', currentUser.id)
+            .gt('fecha_envio', hace48Horas.toISOString())
+            .order('fecha_envio', { ascending: true });
+
+        if (error) return;
+
+        messagesContainer.innerHTML = '';
+        
+        if (data.length === 0) {
+            messagesContainer.innerHTML = `<p class="text-xs text-center text-gray-500 my-auto">Empieza la conversación...</p>`;
+            lastMessageCount = 0;
+            return;
+        }
+
+        lastMessageCount = data.length;
+
+        data.forEach(msg => {
+            const isAdmin = msg.user_email === adminEmail;
+            const msgEl = document.createElement('div');
+            
+            // Si es Admin, el mensaje sale Gris a la Izquierda. Si es el usuario, Verde a la Derecha.
+            msgEl.className = isAdmin 
+                ? 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-2.5 rounded-2xl rounded-tl-sm self-start max-w-[85%] text-sm shadow-sm'
+                : 'bg-ciber-green/20 border border-ciber-green/30 text-gray-900 dark:text-gray-100 p-2.5 rounded-2xl rounded-br-sm self-end max-w-[85%] text-sm shadow-sm';
+            
+            msgEl.innerText = msg.mensaje;
+            messagesContainer.appendChild(msgEl);
+        });
+
+        // Solo scrollear al fondo automáticamente si el chat está abierto
+        if (!windowChat?.classList.contains('hidden')) {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+    };
+
+    // FORMULARIO DE CONTACTO (ANÓNIMOS)
+    contactForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      cSubmit.disabled = true;
+      const lang = document.documentElement.lang;
+
+      try {
+        const { error } = await supabase.from('mensajes').insert([{ 
+            nombre: cName.value, 
+            correo: cEmail.value, 
+            mensaje: cMsg.value 
+        }]);
+
+        if (error) throw error;
+        
+        contactForm.classList.add('hidden');
+        if(statusDiv) {
+            statusDiv.classList.remove('hidden');
+            statusDiv.className = 'mt-3 text-center text-sm font-bold p-2 rounded-lg bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800';
+            statusDiv.innerText = lang === 'es' ? '¡Mensaje enviado con éxito!' : 'Message sent successfully!';
+        }
+      } catch (err) {
+        if(statusDiv) {
+            statusDiv.classList.remove('hidden');
+            statusDiv.className = 'mt-3 text-center text-sm font-bold p-2 rounded-lg bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800';
+            statusDiv.innerText = lang === 'es' ? 'Error al enviar.' : 'Error sending.';
+        }
+      } finally {
+        cSubmit.disabled = false;
+      }
+    });
+
+    // FORMULARIO DE CHAT EN VIVO (USUARIOS REGISTRADOS)
+    liveChatForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!liveInput.value.trim() || !currentUser) return;
+        
+        liveSubmit.disabled = true;
+        const texto = liveInput.value;
+        liveInput.value = '';
+
+        try {
+            const { error } = await supabase.from('chat_en_vivo').insert([{ 
+                user_id: currentUser.id, 
+                user_email: currentUser.email, 
+                mensaje: texto 
+            }]);
+
+            if (error) throw error;
+            
+            // Como acabamos de escribir, sumamos al contador para que el radar no se asuste
+            lastMessageCount++; 
+            await loadLiveMessages();
+            
+        } catch (err) {
+            console.error('Error:', err);
+        } finally {
+            liveSubmit.disabled = false;
+            liveInput.focus();
+        }
+    });
+
+    // CERRAR SESIÓN
+    logoutBtn?.addEventListener('click', async () => {
+        await supabase.auth.signOut();
+        window.location.reload();
+    });
+  });
+</script>

@@ -1,0 +1,5 @@
+allowBuilds:
+  '@tsparticles/engine': true
+  esbuild: true
+  sharp: true
+  tsparticles-engine: true

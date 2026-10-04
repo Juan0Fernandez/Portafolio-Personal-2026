@@ -1,0 +1,243 @@
+---
+// src/pages/register.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Acceso | Registro">
+  <div class="absolute top-6 right-6 z-50 flex items-center gap-3">
+    <button id="theme-toggle-auth" class="bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white p-2.5 rounded-full hover:text-ciber-purple dark:hover:text-ciber-green transition-colors shadow-lg group">
+      <svg id="theme-icon-dark-auth" class="w-5 h-5 hidden group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+      <svg id="theme-icon-light-auth" class="w-5 h-5 hidden group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+    </button>
+    <button id="lang-toggle-auth" class="bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white font-bold px-4 py-2 rounded-full hover:text-ciber-green transition-colors shadow-lg">
+      EN
+    </button>
+  </div>
+
+  <main class="min-h-screen flex items-center justify-center p-6 relative z-10 bg-transparent">
+    
+    <div class="relative w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-[2px] bg-transparent">
+      
+      <div class="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] animate-[spin_4s_linear_infinite] z-0" 
+            style="background: conic-gradient(transparent 60%, #00ff41 80%, #bc13fe 100%);">
+      </div>
+
+      <div class="relative z-10 w-full h-full bg-white dark:bg-[#0a0a0a] rounded-[calc(1.5rem-2px)] p-8 sm:p-10 flex flex-col justify-center">
+        
+        <div class="text-center mb-8">
+          <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tighter uppercase" data-es="Registro <span class='text-ciber-green'>Comunidad</span>" data-en="Community <span class='text-ciber-green'>Register</span>">
+            Registro <span class="text-ciber-green">Comunidad</span>
+          </h1>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 font-medium" data-es="Únete para usar el chat en vivo." data-en="Join to use live chat.">
+            Únete para usar el chat en vivo.
+          </p>
+        </div>
+
+        <form id="register-form" class="space-y-5">
+          
+          <div>
+            <label for="reg-nick" class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-1" data-es="Tu Nombre / Nick" data-en="Your Name / Nick">Tu Nombre / Nick</label>
+            <input type="text" id="reg-nick" required class="w-full bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm border-b-2 border-gray-300 dark:border-gray-700 focus:border-ciber-green dark:focus:border-ciber-green text-gray-900 dark:text-white py-2.5 px-4 rounded-t-xl focus:outline-none transition-colors" placeholder="Ej: Pepito">
+          </div>
+
+          <div>
+            <label for="reg-email" class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-1" data-es="Correo Electrónico" data-en="Email Address">Correo Electrónico</label>
+            <input type="email" id="reg-email" required class="w-full bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm border-b-2 border-gray-300 dark:border-gray-700 focus:border-ciber-green dark:focus:border-ciber-green text-gray-900 dark:text-white py-2.5 px-4 rounded-t-xl focus:outline-none transition-colors" placeholder="ejemplo@correo.com">
+          </div>
+          
+          <div>
+            <label for="reg-password" class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-1" data-es="Contraseña" data-en="Password">Contraseña</label>
+            <div class="relative">
+              <input type="password" id="reg-password" required minlength="6" class="w-full bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm border-b-2 border-gray-300 dark:border-gray-700 focus:border-ciber-purple dark:focus:border-ciber-purple text-gray-900 dark:text-white py-2.5 px-4 pr-12 rounded-t-xl focus:outline-none transition-colors" placeholder="••••••••">
+              <button type="button" id="toggle-pass-reg" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-ciber-purple transition-colors">
+                <svg id="eye-show-reg" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg id="eye-hide-reg" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label for="reg-password-confirm" class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest mb-1" data-es="Confirmar Contraseña" data-en="Confirm Password">Confirmar Contraseña</label>
+            <div class="relative">
+              <input type="password" id="reg-password-confirm" required minlength="6" class="w-full bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm border-b-2 border-gray-300 dark:border-gray-700 focus:border-ciber-purple dark:focus:border-ciber-purple text-gray-900 dark:text-white py-2.5 px-4 pr-12 rounded-t-xl focus:outline-none transition-colors" placeholder="••••••••">
+              <button type="button" id="toggle-pass-confirm" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-ciber-purple transition-colors">
+                <svg id="eye-show-confirm" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg id="eye-hide-confirm" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" id="reg-submit" class="w-full mt-6 bg-gray-900 dark:bg-white text-white dark:text-black font-bold uppercase tracking-widest py-3.5 rounded-xl hover:bg-ciber-purple hover:text-white dark:hover:bg-ciber-purple transition-all duration-300 shadow-lg" data-es="Crear Cuenta" data-en="Create Account">
+            Crear Cuenta
+          </button>
+        </form>
+
+        <div id="reg-success" class="hidden mt-4 text-center text-sm font-bold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 p-3 rounded-lg border border-green-200 dark:border-green-800">
+        </div>
+        
+        <div id="reg-error" class="hidden mt-4 text-center text-sm font-bold text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30 p-3 rounded-lg border border-red-200 dark:border-red-800">
+        </div>
+        
+        <div class="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p data-es="¿Ya tienes cuenta?" data-en="Already have an account?">¿Ya tienes cuenta?</p>
+          <a href="/login" class="font-bold text-ciber-green hover:text-ciber-purple transition-colors drop-shadow-md" data-es="Inicia sesión aquí" data-en="Login here">
+            Inicia sesión aquí
+          </a>
+        </div>
+
+        <div class="mt-6 text-center border-t border-gray-200 dark:border-gray-800 pt-4">
+          <a href="/" class="text-xs font-bold tracking-widest text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors uppercase">← Volver al inicio</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { supabase } from '../lib/supabase.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('register-form');
+    const nickInput = document.getElementById('reg-nick') as HTMLInputElement;
+    const emailInput = document.getElementById('reg-email') as HTMLInputElement;
+    const passInput = document.getElementById('reg-password') as HTMLInputElement;
+    const passConfirmInput = document.getElementById('reg-password-confirm') as HTMLInputElement;
+    const submitBtn = document.getElementById('reg-submit') as HTMLButtonElement;
+    const successDiv = document.getElementById('reg-success');
+    const errorDiv = document.getElementById('reg-error');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!submitBtn || !emailInput || !passInput || !nickInput || !passConfirmInput) return;
+
+      const lang = document.documentElement.lang;
+      
+      if (passInput.value !== passConfirmInput.value) {
+        if(errorDiv) {
+            errorDiv.classList.remove('hidden');
+            errorDiv.innerText = lang === 'es' ? 'Las contraseñas no coinciden.' : 'Passwords do not match.';
+        }
+        return; 
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Procesando...';
+      if(successDiv) successDiv.classList.add('hidden');
+      if(errorDiv) errorDiv.classList.add('hidden');
+
+      const { data, error } = await supabase.auth.signUp({
+        email: emailInput.value,
+        password: passInput.value,
+        options: {
+          data: {
+            nickname: nickInput.value
+          }
+        }
+      });
+
+      if (error) {
+        if(errorDiv) {
+            errorDiv.classList.remove('hidden');
+            if (error.message.includes("User already registered")) {
+                 errorDiv.innerText = lang === 'es' ? 'Este correo ya está registrado.' : 'This email is already registered.';
+            } else {
+                 errorDiv.innerText = lang === 'es' ? 'Error al crear usuario.' : 'Error creating user.';
+            }
+        }
+        submitBtn.disabled = false;
+        submitBtn.innerText = lang === 'es' ? 'Crear Cuenta' : 'Create Account';
+      } else {
+        if(successDiv) {
+            successDiv.classList.remove('hidden');
+            successDiv.innerHTML = lang === 'es' 
+                ? '<p>¡Cuenta creada! <br><b class="text-ciber-purple">Revisa tu correo</b> para confirmar y poder entrar.</p><p class="text-xs mt-2 text-gray-500">Redirigiendo al Login...</p>' 
+                : '<p>Account created! <br><b class="text-ciber-purple">Check your email</b> to confirm and access.</p><p class="text-xs mt-2 text-gray-500">Redirecting to Login...</p>';
+        }
+        if(form) (form as HTMLFormElement).reset();
+        
+        setTimeout(() => {
+            window.location.href = '/login';
+        }, 4000);
+      }
+    });
+
+    // Lógica para ojito de la primera contraseña
+    const togglePassBtn = document.getElementById('toggle-pass-reg');
+    const eyeShow = document.getElementById('eye-show-reg');
+    const eyeHide = document.getElementById('eye-hide-reg');
+
+    togglePassBtn?.addEventListener('click', () => {
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        eyeShow?.classList.add('hidden');
+        eyeHide?.classList.remove('hidden');
+      } else {
+        passInput.type = 'password';
+        eyeShow?.classList.remove('hidden');
+        eyeHide?.classList.add('hidden');
+      }
+    });
+
+    // NUEVO: Lógica para ojito de confirmar contraseña
+    const togglePassConfirmBtn = document.getElementById('toggle-pass-confirm');
+    const eyeShowConfirm = document.getElementById('eye-show-confirm');
+    const eyeHideConfirm = document.getElementById('eye-hide-confirm');
+
+    togglePassConfirmBtn?.addEventListener('click', () => {
+      if (passConfirmInput.type === 'password') {
+        passConfirmInput.type = 'text';
+        eyeShowConfirm?.classList.add('hidden');
+        eyeHideConfirm?.classList.remove('hidden');
+      } else {
+        passConfirmInput.type = 'password';
+        eyeShowConfirm?.classList.remove('hidden');
+        eyeHideConfirm?.classList.add('hidden');
+      }
+    });
+
+    const langBtn = document.getElementById('lang-toggle-auth');
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        let currentLang = document.documentElement.lang === 'es' ? 'en' : 'es';
+        document.documentElement.lang = currentLang;
+        langBtn.innerText = currentLang === 'es' ? 'EN' : 'ES';
+        
+        document.querySelectorAll('[data-es][data-en]').forEach(el => {
+          el.innerHTML = el.getAttribute(`data-${currentLang}`) || '';
+        });
+      });
+    }
+
+    const themeBtn = document.getElementById('theme-toggle-auth');
+    const iconDark = document.getElementById('theme-icon-dark-auth');
+    const iconLight = document.getElementById('theme-icon-light-auth');
+    
+    const updateIcon = () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        if (isDark) {
+            iconLight?.classList.remove('hidden');
+            iconDark?.classList.add('hidden');
+        } else {
+            iconDark?.classList.remove('hidden');
+            iconLight?.classList.add('hidden');
+        }
+    };
+
+    updateIcon();
+
+    themeBtn?.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        
+        if (isDark) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+        
+        updateIcon();
+        window.dispatchEvent(new Event('theme-changed'));
+    });
+  });
+</script>

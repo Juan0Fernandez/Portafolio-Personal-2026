@@ -1,0 +1,69 @@
+---
+// src/components/Navbar.astro
+const { hideLinks = false } = Astro.props;
+---
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300 border-b bg-transparent backdrop-blur-md border-gray-200/50 dark:border-gray-800/50">
+  
+  <a href="/" class="text-2xl font-bold tracking-tighter text-gray-900 dark:text-white hover:text-ciber-green dark:hover:text-ciber-green transition-colors">
+    ALADAR'S<span class="text-ciber-green">TECHNOLOGY</span>
+  </a>
+  
+  <!-- Solo mostramos los enlaces si hideLinks es false -->
+  {!hideLinks && (
+    <ul id="nav-links" class="fixed top-[73px] left-0 w-full flex-col gap-6 p-8 bg-white/95 dark:bg-black/95 border-b border-gray-200 dark:border-gray-800 transition-transform transform -translate-y-[150%] opacity-0 md:relative md:top-0 md:translate-y-0 md:opacity-100 md:flex md:flex-row md:w-auto md:p-0 md:bg-transparent md:dark:bg-transparent md:border-0 md:gap-8 text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400">
+      <li><a href="#inicio" class="hover:text-ciber-green dark:hover:text-white transition-colors" data-es="Inicio" data-en="Home">Inicio</a></li>
+      <li><a href="#habilidades" class="hover:text-ciber-green dark:hover:text-white transition-colors" data-es="Habilidades" data-en="Skills">Habilidades</a></li>
+      <li><a href="#proyectos" class="hover:text-ciber-green dark:hover:text-white transition-colors" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
+      <li><a href="#contacto" class="hover:text-ciber-purple transition-colors" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    </ul>
+  )}
+
+  <div class="flex items-center gap-4">
+    
+    <button id="lang-toggle" class="font-bold text-gray-600 dark:text-gray-400 hover:text-ciber-green dark:hover:text-white transition-colors p-2 text-sm">
+      EN
+    </button>
+
+    <button id="theme-toggle" class="transition-colors p-2 text-gray-600 dark:text-gray-400 hover:text-ciber-green dark:hover:text-white" aria-label="Cambiar tema">
+      <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 block dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    </button>
+
+    <!-- Solo mostramos el CV si hideLinks es false -->
+    {!hideLinks && (
+      <a href="/cv" class="hidden sm:inline-block border border-ciber-purple text-ciber-purple px-5 py-2 rounded-full font-bold text-sm hover:bg-ciber-purple hover:text-white transition-all shadow-md" data-es="MI CV" data-en="MY CV">
+        MI CV
+      </a>
+    )}
+    
+    <!-- Solo mostramos el botón hamburguesa si hideLinks es false -->
+    {!hideLinks && (
+      <button id="nav-toggle" class="md:hidden flex flex-col gap-1.5 z-50 focus:outline-none group">
+          <span class="w-7 h-0.5 bg-black dark:bg-white rounded-full transition-transform duration-300 group-focus:rotate-45 group-focus:translate-y-2"></span>
+          <span class="w-7 h-0.5 bg-black dark:bg-white rounded-full transition-opacity duration-300 group-focus:opacity-0"></span>
+          <span class="w-7 h-0.5 bg-black dark:bg-white rounded-full transition-transform duration-300 group-focus:-rotate-45 group-focus:-translate-y-2"></span>
+      </button>
+    )}
+  </div>
+</nav>
+
+<script>
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('opacity-0');
+            navLinks.classList.toggle('-translate-y-[150%]');
+            navLinks.classList.toggle('shadow-2xl');
+        });
+    }
+
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            window.dispatchEvent(new Event('theme-changed'));
+        });
+    }
+</script>

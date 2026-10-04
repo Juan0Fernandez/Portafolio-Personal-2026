@@ -1,0 +1,164 @@
+---
+// src/components/Projects.astro
+---
+
+<section id="proyectos" class="py-24 px-6 md:px-12 relative z-10 border-t bg-transparent border-gray-200 dark:border-gray-800">
+  <div class="container mx-auto">
+    <h2 class="text-4xl font-bold mb-16 text-center tracking-tighter text-gray-900 dark:text-white">
+      <span data-es="Mis" data-en="My">Mis</span> <span class="text-ciber-purple" data-es="Proyectos" data-en="Projects">Proyectos</span>
+    </h2>
+
+    <div class="swiper border border-gray-300 dark:border-gray-600/50 rounded-3xl overflow-hidden relative group bg-gray-200/90 dark:bg-gray-900/60 backdrop-blur-md shadow-xl max-w-5xl mx-auto">
+      
+      <div class="swiper-wrapper" id="swiper-dynamic-wrapper">
+         <div class="w-full h-80 md:h-[50vh] flex items-center justify-center">
+             <p class="text-gray-500 animate-pulse font-mono uppercase tracking-widest">Cargando datos...</p>
+         </div>
+      </div>
+
+      <div class="swiper-button-prev group-hover:opacity-100 opacity-0 transition-opacity !text-ciber-purple"></div>
+      <div class="swiper-button-next group-hover:opacity-100 opacity-0 transition-opacity !text-ciber-purple"></div>
+    </div>
+
+    <div class="project-progress mt-8 max-w-2xl mx-auto flex flex-col items-center z-20 relative">
+      <div class="project-pagination swiper-pagination !static !flex !gap-2 justify-center w-full mb-2"></div>
+    </div>
+
+    <div id="project-description" class="mt-8 border border-gray-200 dark:border-gray-600/50 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row gap-8 transition-opacity duration-300 opacity-0 bg-gray-200/90 dark:bg-gray-900/60 backdrop-blur-md shadow-lg dark:shadow-none max-w-5xl mx-auto">
+      <div class="flex-grow">
+        <h4 id="project-desc-title" class="text-2xl md:text-3xl font-bold mb-4 text-gray-900 dark:text-white">Cargando...</h4>
+        <p id="project-desc-text" class="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+          Obteniendo datos...
+        </p>
+      </div>
+      <div class="flex flex-col gap-4 items-center justify-center md:items-start min-w-[200px] shrink-0 border-t md:border-t-0 md:border-l border-gray-300 dark:border-gray-700 pt-6 md:pt-0 md:pl-8 mt-4 md:mt-0">
+        <a id="project-live-link" href="#" target="_blank" class="flex gap-3 items-center text-lg font-bold transition-all hover:scale-105 text-gray-800 dark:text-gray-300 hover:text-ciber-purple">
+          🔗 <span data-es="Ver Demo" data-en="Live Demo">Ver Demo</span>
+        </a>
+        <a id="project-repo-link" href="#" target="_blank" class="flex gap-3 items-center text-lg font-bold transition-all hover:scale-105 text-ciber-green">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg> 
+          <span data-es="Ver Código" data-en="View Code">Ver Código</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style is:global>
+  .project-progress .swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
+    background-color: #9ca3af !important; 
+    border-radius: 50% !important;
+    margin: 0 4px !important;
+    opacity: 1 !important;
+    transition: all 0.3s ease;
+  }
+  .dark .project-progress .swiper-pagination-bullet {
+    background-color: #4b5563 !important; 
+  }
+  .project-progress .swiper-pagination-bullet-active {
+    background-color: var(--accent-primary) !important;
+    width: 32px !important;
+    border-radius: 6px !important;
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/navigation';
+  import 'swiper/css/pagination';
+  import { supabase } from '../lib/supabase.js';
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    
+    const { data: projectsData, error } = await supabase
+        .from('proyectos')
+        .select('*')
+        .eq('es_visible', true)
+        .order('id', { ascending: true });
+
+    if (error || !projectsData || projectsData.length === 0) {
+        const wrapper = document.getElementById('swiper-dynamic-wrapper');
+        if(wrapper) wrapper.innerHTML = '<div class="w-full h-80 flex items-center justify-center"><p class="text-red-500 font-bold">No hay proyectos disponibles.</p></div>';
+        return;
+    }
+
+    const swiperWrapper = document.getElementById('swiper-dynamic-wrapper');
+    if(swiperWrapper) swiperWrapper.innerHTML = '';
+
+    projectsData.forEach(project => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide relative rounded-3xl overflow-hidden';
+        
+        // ELIMINÉ EL TEXTO OCULTO QUE CAUSABA EL BUG VISUAL
+        slide.innerHTML = `
+          <div class="w-full h-80 md:h-[50vh] flex items-center justify-center relative bg-gray-300 dark:bg-gray-800">
+            <img src="${project.imagen_url}" alt="${project.titulo_es}" class="absolute inset-0 w-full h-full object-cover z-10">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-15 pointer-events-none"></div>
+            <div class="absolute bottom-8 left-8 right-8 z-20">
+              <h3 class="text-3xl md:text-5xl font-extrabold tracking-tighter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white" data-es="${project.titulo_es}" data-en="${project.titulo_en}">${project.titulo_es}</h3>
+            </div>
+          </div>
+        `;
+        if(swiperWrapper) swiperWrapper.appendChild(slide);
+    });
+
+    const swiper = new Swiper('.swiper', {
+      modules: [Navigation, Pagination],
+      loop: projectsData.length > 1, 
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+    const descTitle = document.getElementById('project-desc-title');
+    const descText = document.getElementById('project-desc-text');
+    const liveLink = document.getElementById('project-live-link');
+    const repoLink = document.getElementById('project-repo-link');
+    const descContainer = document.getElementById('project-description');
+
+    const updateDescription = () => {
+      const currentProject = projectsData[swiper.realIndex]; 
+      const currentLang = document.documentElement.lang || 'es';
+
+      if (descTitle) {
+          descTitle.textContent = currentLang === 'es' ? currentProject.titulo_es : currentProject.titulo_en;
+          descTitle.setAttribute('data-es', currentProject.titulo_es);
+          descTitle.setAttribute('data-en', currentProject.titulo_en);
+      }
+      if (descText) {
+          descText.textContent = currentLang === 'es' ? currentProject.descripcion_es : currentProject.descripcion_en;
+          descText.setAttribute('data-es', currentProject.descripcion_es);
+          descText.setAttribute('data-en', currentProject.descripcion_en);
+      }
+      
+      if (liveLink) {
+          liveLink.setAttribute('href', currentProject.demo_url);
+          liveLink.style.display = (currentProject.demo_url === '#' || currentProject.demo_url === '') ? 'none' : 'flex';
+      }
+      if (repoLink) {
+          repoLink.setAttribute('href', currentProject.repo_url);
+          repoLink.style.display = (currentProject.repo_url === '#' || currentProject.repo_url === '') ? 'none' : 'flex';
+      }
+      
+      descContainer?.classList.remove('opacity-0');
+      descContainer?.classList.add('opacity-100');
+    };
+
+    swiper.on('slideChange', updateDescription);
+    updateDescription(); 
+    
+    document.getElementById('lang-toggle')?.addEventListener('click', () => {
+        setTimeout(updateDescription, 50); 
+    });
+  });
+</script>

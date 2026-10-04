@@ -1,0 +1,218 @@
+---
+// src/pages/dashboard.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Dashboard | Administración">
+  <div class="absolute top-6 right-6 z-50 flex items-center gap-3">
+    <button id="theme-toggle-dash" class="bg-transparent border border-gray-600/50 dark:border-white/20 text-gray-900 dark:text-white p-2.5 rounded-full hover:text-ciber-purple dark:hover:text-ciber-green transition-colors backdrop-blur-sm shadow-sm">
+      <svg id="theme-icon-dark-dash" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+      <svg id="theme-icon-light-dash" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+    </button>
+    <button id="lang-toggle-dash" class="bg-transparent border border-gray-600/50 dark:border-white/20 text-gray-900 dark:text-white font-bold px-4 py-2 rounded-full hover:text-ciber-green transition-colors backdrop-blur-sm shadow-sm">
+      EN
+    </button>
+  </div>
+
+  <main class="min-h-screen pt-24 px-6 md:px-12 relative z-10 bg-transparent text-gray-900 dark:text-white">
+    <div class="container mx-auto max-w-7xl">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-gray-300 dark:border-gray-800 pb-6 gap-4">
+        <div>
+            <h1 class="text-4xl font-extrabold tracking-tighter uppercase" data-es="Panel de <span class='text-ciber-green'>Control</span>" data-en="Control <span class='text-ciber-green'>Panel</span>">Panel de <span class="text-ciber-green">Control</span></h1>
+            <p class="text-lg mt-2 font-mono text-gray-600 dark:text-gray-300">
+              <span data-es="Acceso autorizado:" data-en="Authorized access:">Acceso autorizado:</span> <span id="user-greeting" class="text-ciber-purple font-bold">Administrador Supremo</span>
+            </p>
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <a href="/" class="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-ciber-purple transition-colors" data-es="← Ver Portafolio" data-en="← View Portfolio">← Ver Portafolio</a>
+          <button id="logout-btn" class="border border-red-500 text-red-600 dark:text-red-400 px-6 py-2 rounded-full font-bold hover:bg-red-600 hover:text-white transition-all shadow-sm" data-es="Cerrar Sesión" data-en="Log Out">Cerrar Sesión</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-gray-100/90 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200 dark:border-gray-600/50 p-8 rounded-3xl shadow-xl flex flex-col h-[65vh] relative overflow-hidden">
+          <h2 class="text-2xl font-bold mb-6 text-ciber-purple border-b border-gray-200 dark:border-gray-600/50 pb-2" data-es="Bandeja de Mensajes" data-en="Message Inbox">Bandeja de Mensajes</h2>
+          <div id="messages-container" class="flex-grow overflow-y-auto pr-2 space-y-4 custom-scrollbar">
+            <p class="text-gray-500 text-center mt-10" data-es="Cargando..." data-en="Loading...">Cargando...</p>
+          </div>
+        </div>
+
+        <div class="bg-gray-100/90 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200 dark:border-gray-600/50 p-8 rounded-3xl shadow-xl flex flex-col h-[65vh] relative overflow-hidden">
+          <h2 class="text-2xl font-bold mb-6 text-ciber-green border-b border-gray-200 dark:border-gray-600/50 pb-2" data-es="Gestión de Proyectos" data-en="Project Management">Gestión de Proyectos</h2>
+          <div class="flex-grow overflow-y-auto pr-2 custom-scrollbar">
+            <form id="project-form" class="space-y-4 mb-8 bg-white/40 dark:bg-black/30 p-4 rounded-xl border border-gray-300 dark:border-gray-700/50 shadow-md transition-all duration-300">
+              <div class="flex justify-between items-center mb-2">
+                <h3 id="form-mode-title" class="text-sm font-bold uppercase tracking-widest text-gray-500">Añadir Nuevo Proyecto</h3>
+                <button type="button" id="cancel-edit-btn" class="hidden text-xs text-red-500 hover:text-red-700 font-bold border border-red-500 px-2 py-1 rounded">Cancelar</button>
+              </div>
+              <input type="text" id="p-slug" placeholder="Slug (Ej: sistema-ventas) sin espacios" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-ciber-green outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input type="text" id="p-title-es" placeholder="Título (Español)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-ciber-green outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+                  <input type="text" id="p-title-en" placeholder="Title (English)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-ciber-green outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+              </div>
+              <div id="dropzone" class="w-full border-2 border-dashed border-gray-400 dark:border-gray-600 rounded-xl p-3 text-center cursor-pointer hover:border-ciber-green transition-colors relative bg-black/10">
+                <input type="file" id="p-file" accept="image/png, image/jpeg, image/webp" class="hidden">
+                <div id="dropzone-text" class="text-xs text-gray-600 dark:text-gray-400"><span class="text-3xl block mb-1">📸</span><span id="drop-msg">Arrastra la imagen o haz clic</span></div>
+                <div id="preview-container" class="relative hidden mx-auto h-20 shadow-md">
+                    <img id="image-preview" src="" alt="Preview" class="h-full object-cover rounded-md border border-gray-400 dark:border-gray-700">
+                    <button type="button" id="clear-image-btn" class="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center font-bold">×</button>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input type="text" id="p-repo" placeholder="Link GitHub" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-ciber-green outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+                  <input type="text" id="p-demo" placeholder="Link Demo (# si no hay)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-ciber-green outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+              </div>
+              <textarea id="p-desc-es" placeholder="Descripción en Español" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-ciber-green outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white resize-none" rows="2"></textarea>
+              <textarea id="p-desc-en" placeholder="Description in English" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-ciber-green outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white resize-none" rows="2"></textarea>
+              <button type="submit" id="p-submit" class="w-full bg-ciber-green text-black font-bold py-2 rounded-lg hover:bg-purple-700 hover:text-white transition-all text-sm shadow-md">Guardar Proyecto</button>
+              <div id="p-status" class="text-xs text-center font-bold hidden"></div>
+            </form>
+            <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-4" data-es="Lista de Proyectos" data-en="Project List">Lista de Proyectos</h3>
+            <div id="projects-list" class="space-y-2 max-h-60 overflow-y-auto custom-scrollbar"><p class="text-gray-500 text-xs text-center">Cargando...</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+        
+        <div class="bg-gray-100/90 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200 dark:border-gray-600/50 p-8 rounded-3xl shadow-xl relative overflow-hidden">
+          <h2 class="text-2xl font-bold mb-6 text-blue-500 border-b border-gray-200 dark:border-gray-600/50 pb-2">Gestión de Certificados (CV)</h2>
+          <form id="cert-form" class="space-y-4 bg-white/40 dark:bg-black/30 p-4 rounded-xl border border-gray-300 dark:border-gray-700/50 shadow-md transition-all duration-300 mb-8">
+            <div class="flex justify-between items-center mb-2">
+              <h3 id="cert-form-title" class="text-sm font-bold uppercase tracking-widest text-gray-500">Añadir Certificado</h3>
+              <button type="button" id="cert-cancel-btn" class="hidden text-xs text-red-500 hover:text-red-700 font-bold border border-red-500 px-2 py-1 rounded">Cancelar</button>
+            </div>
+            <input type="text" id="c-entidad" placeholder="Entidad (Ej: Cisco, Udemy)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-blue-500 outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" id="c-title-es" placeholder="Título (Español)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-blue-500 outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+                <input type="text" id="c-title-en" placeholder="Title (English)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-blue-500 outline-none py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+            </div>
+            <div id="cert-dropzone" class="w-full border-2 border-dashed border-gray-400 dark:border-gray-600 rounded-xl p-3 text-center cursor-pointer hover:border-blue-500 transition-colors relative bg-black/10">
+              <input type="file" id="c-file" accept="application/pdf, image/png, image/jpeg" class="hidden">
+              <div id="cert-dropzone-text" class="text-xs text-gray-600 dark:text-gray-400"><span class="text-3xl block mb-1">📄</span><span id="cert-drop-msg">Sube el PDF/Imagen</span></div>
+              <div id="cert-preview-container" class="relative hidden w-full px-2">
+                 <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-2 flex items-center justify-between">
+                     <div class="flex items-center gap-2 truncate"><span class="text-2xl">📑</span><p id="cert-file-name" class="text-sm font-bold text-blue-600 dark:text-blue-400 truncate"></p></div>
+                     <button type="button" id="cert-clear-file-btn" class="ml-2 text-red-500 hover:bg-red-200 rounded-md p-1">❌</button>
+                 </div>
+              </div>
+            </div>
+            <button type="submit" id="c-submit" class="w-full bg-blue-500 text-white font-bold py-2 rounded-lg hover:bg-blue-600 transition-all text-sm shadow-md">Guardar Certificado</button>
+            <div id="c-status" class="text-xs text-center font-bold hidden"></div>
+          </form>
+          <div id="certs-list" class="space-y-2 max-h-[300px] overflow-y-auto custom-scrollbar pr-2"><p class="text-gray-500 text-xs text-center">Cargando...</p></div>
+        </div>
+
+        <div class="bg-gray-100/90 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200 dark:border-gray-600/50 p-8 rounded-3xl shadow-xl relative overflow-hidden flex flex-col">
+          <h2 class="text-2xl font-bold mb-6 text-orange-500 border-b border-gray-200 dark:border-gray-600/50 pb-2">Constructor de CV Dinámico</h2>
+          
+          <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow space-y-6">
+            
+            <div class="bg-white/40 dark:bg-black/30 p-4 rounded-xl border border-gray-300 dark:border-gray-700/50">
+              <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-3">Foto de Perfil Actual</h3>
+              <div class="flex items-center gap-4">
+                 <img id="perfil-preview" src="/img/Leon.png" class="w-16 h-16 rounded-full object-cover border-2 border-gray-400">
+                 <form id="perfil-form" class="flex-grow flex gap-2">
+                    <input type="file" id="perfil-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 dark:file:bg-orange-900/30 dark:file:text-orange-500 cursor-pointer">
+                    <button type="submit" id="perfil-submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-2 px-4 rounded-full shadow-md">Subir</button>
+                 </form>
+              </div>
+            </div>
+
+            <div class="bg-white/40 dark:bg-black/30 p-4 rounded-xl border border-gray-300 dark:border-gray-700/50">
+              <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-3">Habilidades Clave</h3>
+              <form id="hab-form" class="flex gap-2 mb-4">
+                 <input type="text" id="h-nombre" placeholder="Ej: Python" required class="flex-grow bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-orange-500 py-1.5 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+                 <select id="h-color" class="bg-white/50 dark:bg-black/50 border border-gray-400 text-xs rounded-md px-2 text-gray-900 dark:text-white">
+                    <option value="gray">Gris (Normal)</option>
+                    <option value="ciber-green">Verde</option>
+                    <option value="ciber-purple">Morado</option>
+                 </select>
+                 <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-1.5 px-3 rounded-md shadow-md">Añadir</button>
+              </form>
+              <div id="habs-list" class="flex flex-wrap gap-2"><p class="text-xs text-gray-500">Cargando...</p></div>
+            </div>
+
+            <div class="bg-white/40 dark:bg-black/30 p-4 rounded-xl border border-gray-300 dark:border-gray-700/50">
+              <div class="flex justify-between items-center mb-3">
+                <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500">Experiencia Práctica</h3>
+                <button type="button" id="exp-cancel-btn" class="hidden text-xs text-red-500 font-bold border border-red-500 px-2 py-1 rounded">Cancelar</button>
+              </div>
+              <form id="exp-form" class="space-y-3 mb-4">
+                 <input type="text" id="e-empresa" placeholder="Empresa / Lugar" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-orange-500 py-1 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+                 <div class="grid grid-cols-2 gap-2">
+                    <input type="text" id="e-cargo-es" placeholder="Cargo (ES)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-orange-500 py-1 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+                    <input type="text" id="e-cargo-en" placeholder="Cargo (EN)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-orange-500 py-1 px-2 text-sm rounded-md text-gray-900 dark:text-white">
+                 </div>
+                 <textarea id="e-desc-es" placeholder="Descripción (ES)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-orange-500 py-1 px-2 text-sm rounded-md text-gray-900 dark:text-white resize-none" rows="2"></textarea>
+                 <textarea id="e-desc-en" placeholder="Descripción (EN)" required class="w-full bg-white/50 dark:bg-transparent border-b border-gray-400 focus:border-orange-500 py-1 px-2 text-sm rounded-md text-gray-900 dark:text-white resize-none" rows="2"></textarea>
+                 <button type="submit" id="e-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-2 rounded-md shadow-md">Guardar Experiencia</button>
+              </form>
+              <div id="exp-list" class="space-y-2"><p class="text-xs text-gray-500">Cargando...</p></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-8 bg-gray-100/90 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200 dark:border-gray-600/50 p-8 rounded-3xl shadow-xl relative overflow-hidden mb-20">
+        <h2 class="text-2xl font-bold mb-6 text-ciber-purple border-b border-gray-200 dark:border-gray-600/50 pb-2">Inteligencia de Usuarios</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-4">Usuarios Registrados</h3>
+            <div id="users-list" class="space-y-3 max-h-[400px] overflow-y-auto custom-scrollbar pr-2"><p class="text-gray-500 text-xs text-center mt-10">Escaneando...</p></div>
+          </div>
+          <div class="bg-white/40 dark:bg-black/30 p-4 rounded-xl border border-gray-300 dark:border-gray-700/50 shadow-md flex flex-col h-[400px]">
+             <h3 class="text-sm font-bold uppercase tracking-widest text-ciber-green mb-4 border-b border-gray-300 dark:border-gray-700 pb-2">Terminal de Chat</h3>
+             <div id="admin-chat-placeholder" class="flex-grow flex items-center justify-center text-center h-full"><p class="text-gray-500 text-sm font-mono">Selecciona un usuario de la lista <br> para iniciar comunicación.</p></div>
+             <div id="admin-chat-window" class="hidden flex-grow flex flex-col h-full">
+                <div class="bg-gray-200/50 dark:bg-gray-800/50 rounded-lg p-2 mb-3 flex justify-between items-center shrink-0 border border-gray-300 dark:border-gray-700">
+                    <span class="font-bold text-sm text-gray-900 dark:text-white flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-ciber-green animate-pulse"></span><span id="admin-chat-user-name">Usuario</span></span>
+                    <button id="admin-chat-close" class="text-gray-500 hover:text-red-500 font-bold text-lg leading-none">&times;</button>
+                </div>
+                <div id="admin-chat-messages" class="flex-grow overflow-y-auto space-y-3 pr-2 custom-scrollbar mb-3 flex flex-col"></div>
+                <form id="admin-chat-form" class="flex gap-2 shrink-0">
+                    <input type="text" id="admin-chat-input" required class="flex-grow bg-white/80 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 text-sm py-2 px-3 rounded-xl focus:outline-none focus:border-ciber-green" placeholder="Responder...">
+                    <button type="submit" id="admin-chat-submit" class="bg-ciber-green text-black px-4 py-2 rounded-xl font-bold">Enviar</button>
+                </form>
+             </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<style is:global>
+  .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: rgba(128, 128, 128, 0.1); border-radius: 10px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(188, 19, 254, 0.5); border-radius: 10px; border: 1px solid transparent; background-clip: padding-box; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 255, 65, 0.8); border: 0; }
+</style>
+
+<script>
+  import { checkAuth, setupLogout } from '../lib/auth.js';
+  import { setupThemeAndLanguage } from '../lib/theme.js';
+  import { loadMessages } from '../lib/mensajes.js';
+  import { initProjectsManager } from '../lib/proyectos.js';
+  import { initCertificadosManager } from '../lib/certificados.js';
+  import { initUsuariosManager } from '../lib/usuarios.js';
+  import { initCVManager } from '../lib/cv.js'; // <--- NUEVO MÓDULO
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const isAuth = await checkAuth();
+    if (isAuth) {
+        setupLogout();
+        setupThemeAndLanguage();
+        loadMessages();
+        initProjectsManager();
+        initCertificadosManager();
+        initUsuariosManager();
+        initCVManager(); // <--- INICIAMOS EL CONSTRUCTOR DEL CV
+    }
+  });
+</script>

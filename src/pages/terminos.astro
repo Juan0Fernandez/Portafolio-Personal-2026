@@ -1,0 +1,80 @@
+---
+// src/pages/terminos.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout title="Términos y Condiciones | Juan Fernandez">
+  <!-- Le decimos al Navbar que se simplifique -->
+  <Navbar hideLinks={true} />
+  
+  <main class="pt-32 pb-20 px-6 md:px-12 max-w-4xl mx-auto min-h-screen relative z-10">
+    <div class="bg-white/80 dark:bg-[#1a1a1a]/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-3xl p-8 md:p-12 shadow-xl">
+      
+      <h1 class="text-4xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white tracking-tighter"
+          data-es="Términos y Condiciones" 
+          data-en="Terms and Conditions">
+        Términos y Condiciones
+      </h1>
+      
+      <p class="text-sm text-gray-500 mb-10 font-mono"
+         data-es="Última actualización: Septiembre 2026"
+         data-en="Last updated: September 2026">
+        Última actualización: Septiembre 2026
+      </p>
+
+      <div class="space-y-10 text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+        
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <span class="text-ciber-green">01.</span> <span data-es="Aceptación de los Términos" data-en="Acceptance of Terms">Aceptación de los Términos</span>
+          </h2>
+          <p data-es="Al acceder y utilizar este sitio web, así como al registrarte en el sistema de autenticación, aceptas estar sujeto a estos términos. Este sitio es un portafolio profesional y los servicios de registro se proporcionan principalmente con fines de demostración tecnológica."
+             data-en="By accessing and using this website, as well as registering in the authentication system, you agree to be bound by these terms. This site is a professional portfolio and registration services are provided primarily for technological demonstration purposes.">
+            Al acceder y utilizar este sitio web, así como al registrarte en el sistema de autenticación, aceptas estar sujeto a estos términos. Este sitio es un portafolio profesional y los servicios de registro se proporcionan principalmente con fines de demostración tecnológica.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <span class="text-ciber-green">02.</span> <span data-es="Datos de Usuario y Privacidad" data-en="User Data and Privacy">Datos de Usuario y Privacidad</span>
+          </h2>
+          <p data-es="Para utilizar ciertas funciones, es posible que se requiera la creación de una cuenta. La información recopilada (como direcciones de correo electrónico) es gestionada de forma segura mediante Supabase. No compartimos, vendemos ni distribuimos tu información personal a terceros. Las contraseñas están encriptadas y no son accesibles para el administrador."
+             data-en="To use certain features, account creation may be required. The information collected (such as email addresses) is managed securely via Supabase. We do not share, sell, or distribute your personal information to third parties. Passwords are encrypted and are not accessible to the administrator.">
+            Para utilizar ciertas funciones, es posible que se requiera la creación de una cuenta. La información recopilada (como direcciones de correo electrónico) es gestionada de forma segura mediante Supabase. No compartimos, vendemos ni distribuimos tu información personal a terceros. Las contraseñas están encriptadas y no son accesibles para el administrador.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <span class="text-ciber-green">03.</span> <span data-es="Uso Adecuado" data-en="Acceptable Use">Uso Adecuado</span>
+          </h2>
+          <p data-es="Te comprometes a utilizar las funciones de esta web de manera responsable. Queda estrictamente prohibido intentar vulnerar la seguridad de la plataforma, realizar ataques de fuerza bruta o inyecciones de código. Cualquier cuenta que presente actividad sospechosa será eliminada sin previo aviso."
+             data-en="You agree to use the features of this website responsibly. It is strictly prohibited to attempt to breach the platform's security, perform brute-force attacks, or code injections. Any account showing suspicious activity will be deleted without prior notice.">
+            Te comprometes a utilizar las funciones de esta web de manera responsable. Queda estrictamente prohibido intentar vulnerar la seguridad de la plataforma, realizar ataques de fuerza bruta o inyecciones de código. Cualquier cuenta que presente actividad sospechosa será eliminada sin previo aviso.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <span class="text-ciber-green">04.</span> <span data-es="Limitación de Responsabilidad" data-en="Limitation of Liability">Limitación de Responsabilidad</span>
+          </h2>
+          <p data-es="El contenido y los proyectos mostrados en este portafolio se proporcionan 'tal cual'. Aunque me esfuerzo por mantener la seguridad y funcionalidad, no me hago responsable por interrupciones del servicio, pérdida de datos de cuentas de prueba o problemas derivados del uso de proyectos demostrativos alojados aquí."
+             data-en="The content and projects displayed in this portfolio are provided 'as is'. While I strive to maintain security and functionality, I am not responsible for service interruptions, data loss of test accounts, or issues arising from the use of demo projects hosted here.">
+            El contenido y los proyectos mostrados en este portafolio se proporcionan 'tal cual'. Aunque me esfuerzo por mantener la seguridad y funcionalidad, no me hago responsable por interrupciones del servicio, pérdida de datos de cuentas de prueba o problemas derivados del uso de proyectos demostrativos alojados aquí.
+          </p>
+        </section>
+
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-center">
+        <a href="/" class="px-8 py-3 rounded-full border-2 border-ciber-purple text-ciber-purple font-bold hover:bg-ciber-purple hover:text-white transition-all shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+           data-es="Volver al Inicio" 
+           data-en="Return to Home">
+          Volver al Inicio
+        </a>
+      </div>
+
+    </div>
+  </main>
+</Layout>

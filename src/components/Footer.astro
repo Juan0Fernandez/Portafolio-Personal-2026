@@ -1,0 +1,21 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full border-t border-gray-200 dark:border-gray-800 py-8 mt-12 z-20 relative bg-transparent backdrop-blur-sm">
+  <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+    
+    <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+      &copy; {currentYear} Juan Fernandez. 
+      <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span>
+    </p>
+    
+    <div class="flex gap-6 justify-center">
+      <a href="/terminos" class="text-sm text-gray-500 dark:text-gray-400 hover:text-ciber-purple transition-colors font-bold" data-es="Términos y Condiciones" data-en="Terms & Conditions">
+        Términos y Condiciones
+      </a>
+    </div>
+
+  </div>
+</footer>

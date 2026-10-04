@@ -1,0 +1,56 @@
+---
+// src/components/Skills.astro
+---
+<section id="habilidades" class="py-24 px-6 md:px-12 relative z-10 bg-transparent border-t border-gray-200 dark:border-gray-800">
+  <div class="container mx-auto">
+    <h2 class="text-4xl font-bold mb-16 text-center tracking-tighter text-gray-900 dark:text-white">
+      <span data-es="Mis" data-en="My">Mis</span> <span class="text-ciber-purple" data-es="Habilidades" data-en="Skills">Habilidades</span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <div class="rounded-3xl p-8 border border-gray-300 dark:border-gray-600/50 hover:-translate-y-2 group transition-all duration-300 overflow-hidden relative bg-gray-200/90 dark:bg-gray-900/60 backdrop-blur-md shadow-lg dark:shadow-none">
+        <div class="absolute inset-0 bg-ciber-green/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative z-10 flex flex-col items-center text-center">
+          <div class="text-5xl mb-6 text-ciber-green">🖥️</div>
+          <h3 class="text-2xl font-bold mb-2 tracking-tighter text-gray-900 dark:text-white">FRONTEND</h3>
+          <p class="text-sm mb-6 uppercase font-semibold text-ciber-green" data-es="Interfaces reactivas" data-en="Reactive interfaces">Interfaces reactivas</p>
+          <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+            <li>Astro / React</li>
+            <li>CSS / Tailwind CSS</li>
+            <li>WebGL / Three.js</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rounded-3xl p-8 border border-gray-300 dark:border-gray-600/50 hover:-translate-y-2 group transition-all duration-300 overflow-hidden relative bg-gray-200/90 dark:bg-gray-900/60 backdrop-blur-md shadow-lg dark:shadow-none">
+        <div class="absolute inset-0 bg-ciber-purple/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative z-10 flex flex-col items-center text-center">
+          <div class="text-5xl mb-6 text-ciber-purple">⚙️</div>
+          <h3 class="text-2xl font-bold mb-2 tracking-tighter text-gray-900 dark:text-white">BACKEND</h3>
+          <p class="text-sm mb-6 uppercase font-semibold text-ciber-purple" data-es="Arquitecturas robustas" data-en="Robust architectures">Arquitecturas robustas</p>
+          <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+            <li>Node.js / Python</li>
+            <li>APIs REST / GraphQL</li>
+            <li>Servicios Serverless</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rounded-3xl p-8 border border-gray-300 dark:border-gray-600/50 hover:-translate-y-2 group transition-all duration-300 overflow-hidden relative bg-gray-200/90 dark:bg-gray-900/60 backdrop-blur-md shadow-lg dark:shadow-none">
+        <div class="absolute inset-0 bg-ciber-green/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative z-10 flex flex-col items-center text-center">
+          <div class="text-5xl mb-6 text-ciber-green">📊</div>
+          <h3 class="text-2xl font-bold mb-2 tracking-tighter text-gray-900 dark:text-white" data-es="DATOS" data-en="DATA">DATOS</h3>
+          <p class="text-sm mb-6 uppercase font-semibold text-ciber-green" data-es="Modelado y análisis" data-en="Modeling and analysis">Modelado y análisis</p>
+          <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+            <li>SQL / NoSQL</li>
+            <li>PostgreSQL / MongoDB</li>
+            <li>Data Engineering</li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
